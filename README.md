@@ -67,22 +67,22 @@ By the end of this course, you'll be able to:
 
 ## 📚 Learning Path
 
-### Setup (15 minutes)
+### Setup (30 minutes)
 
 ✓ Install VS Code and UV  
 ✓ Clone repository and sync dependencies  
 ✓ Launch first notebook
 
-### Phase 1: Learn the Basics (2.5 hours)
+### Phase 1: Learn the Basics (1 hours)
 
-**📓 Notebook 1: Python Basics** (45 min)
+**📓 Notebook 1: Python Basics** (20 min)
 
 - Variables, data types, and operations
 - Lists and dictionaries
 - Control flow (if/else, loops)
 - Functions
 
-**📓 Notebook 2: Data Wrangling** (60 min)
+**📓 Notebook 2: Data Wrangling** (20 min)
 
 - Loading data (CSV, JSON, Parquet)
 - Exploring DataFrames with Polars
@@ -90,21 +90,21 @@ By the end of this course, you'll be able to:
 - Grouping and aggregation
 - Joining datasets
 
-**📓 Notebook 3: Plotting** (45 min)
+**📓 Notebook 3: Plotting** (20 min)
 
 - Line charts and bar charts
 - Scatter plots and histograms
 - Customizing visualizations
 - Interactive features
 
-### Phase 2: Practice (2.5 hours)
+### Phase 2: Practice (2 hours)
 
 **✏️ Exercise 1: Fundamentals** (30 min)
 
 - Practice Python basics
 - 8-10 hands-on exercises
 
-**✏️ Exercise 2: Wrangle and Plot** (60 min)
+**✏️ Exercise 2: Wrangle and Plot** (30 min)
 
 - Load and manipulate real datasets
 - Create visualizations from data
@@ -116,7 +116,7 @@ By the end of this course, you'll be able to:
 - Answer business questions with data
 - Build your first portfolio piece!
 
-**Total Time**: ~4 hours (excluding setup)
+**Total Time**: ~4 hours 
 
 ---
 
@@ -172,9 +172,9 @@ Track your journey through the course:
 
 ### Learn (Example Notebooks)
 
-- [ ] 01: Python Basics (45 min)
-- [ ] 02: Data Wrangling (60 min)
-- [ ] 03: Plotting (45 min)
+- [ ] 01: Python Basics (20 min)
+- [ ] 02: Data Wrangling (20 min)
+- [ ] 03: Plotting (20 min)
 
 ### Practice (Exercises)
 
@@ -192,49 +192,11 @@ Track your journey through the course:
 ## 💡 Getting Help
 
 - **Read error messages carefully** - They often tell you exactly what's wrong!
-- **Use GitHub Issues** - Ask questions or report problems
 - **Ask GitHub Copilot** - If you have it installed, use Copilot Chat for help
-- **Check the docs** - Each tool has a guide in the `/docs` folder
+- **Check the docs** - Each tool we use has a guide in the `/docs` folder
+- **Ask your neighbor** - Pair programming can improve efficancy and help you learn
 
 ---
 
-## 🤝 Contributing
-
-Found a typo? Have a suggestion? We welcome contributions!
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
-
----
-
-## 📄 License
-
-This course is released under the MIT License for educational purposes.
-
----
-
-## 🙏 Acknowledgments
-
-Built with amazing open-source tools:
-
-- [Marimo](https://marimo.io/) - Reactive Python notebooks
-- [Polars](https://pola.rs/) - Fast DataFrames
-- [Plotly](https://plotly.com/) - Interactive visualizations
-- [UV](https://astral.sh/uv) - Python package management
-
-**Training developed for Johannesburg SA 2026**
-
----
-
-## 📞 Contact & Support
-
-**Issues**: [GitHub Issues](https://github.com/quickskilling/IntroDataScience/issues)  
-**Discussions**: [GitHub Discussions](https://github.com/quickskilling/IntroDataScience/discussions)  
-**Training Year**: 2026  
-**Location**: Johannesburg, South Africa
-
----
 
 **Ready to start?** Jump to [example_notebooks/01_python_basics.py](example_notebooks/01_python_basics.py) 🚀
