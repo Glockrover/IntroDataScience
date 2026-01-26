@@ -60,7 +60,7 @@ By the end of this course, you'll be able to:
    curl -LsSf https://astral.sh/uv/install.sh | sh
 
    # Windows (PowerShell)
-   powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
+   powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
    ```
 
 4. **Add UV to PATH and verify installation**
