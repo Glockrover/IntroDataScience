@@ -8,7 +8,7 @@
 
 import marimo
 
-__generated_with = "0.18.3"
+__generated_with = "0.19.6"
 app = marimo.App(width="medium")
 
 
@@ -19,13 +19,11 @@ def _(mo):
 
     **Practice what you learned!** Complete these exercises to build your Python skills.
 
-    **Estimated time:** 30 minutes
-
     **Instructions:**
+
     - Read each TODO comment
     - Write code to complete the task
     - Run the cell to check your answer
-    - Solutions are available in `solutions/ex01_fundamentals.py`
 
     ---
     """)
@@ -167,7 +165,6 @@ def _():
     temperature = 25  # Try changing this value
 
     # Write your if/elif/else statements here
-
     return
 
 
@@ -185,7 +182,6 @@ def _():
     numbers = [2, 4, 6, 8, 10]
 
     # Write your loop here
-
     return
 
 
@@ -296,17 +292,13 @@ def _():
     # - "count": number of items
     # - "sum": sum of all items
     # - "average": average of all items
-    # - "max": maximum value
-    # - "min": minimum value
 
     def analyze_numbers(numbers):
         # Write your code here
         result = {
             "count": 0,
             "sum": 0,
-            "average": 0,
-            "max": 0,
-            "min": 0
+            "average": 0
         }
         return result
 
@@ -322,8 +314,6 @@ def _():
     # count: 5
     # sum: 150
     # average: 30.0
-    # max: 50
-    # min: 10
     return
 
 
@@ -335,12 +325,12 @@ def _(mo):
     You've completed the fundamentals exercises!
 
     **What's next?**
-    - Check your solutions against `solutions/ex01_fundamentals.py`
-    - Move on to Exercise 2: Wrangle and Plot
+
+    - Move on to Exercise 2: Wrangle
 
     **Tips:**
-    - If you got stuck, that's normal! Check the solutions and learn from them
-    - Try modifying the exercises with your own data
+
+    - If you got stuck, that's normal! We'll provide solutions to help you get unstuck.
     - Python gets easier with practice
     """)
     return

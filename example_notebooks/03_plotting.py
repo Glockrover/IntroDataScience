@@ -260,30 +260,7 @@ def _(pl, px, students):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    ## 7. Box Plots - Statistical Summary
-    """)
-    return
-
-
-@app.cell
-def _(px, students):
-    # Box plot to show distribution
-    fig10 = px.box(
-        students,
-        x="subject",
-        y="test_score",
-        title="Test Score Distribution by Subject",
-        color="subject",
-        points="all"  # Show all points
-    )
-    fig10
-    return
-
-
-@app.cell(hide_code=True)
-def _(mo):
-    mo.md(r"""
-    ## 8. Subplots - Multiple Charts
+    ## 7. Subplots - Multiple Charts
     """)
     return
 
@@ -303,104 +280,36 @@ def _(go, pl, weather):
     ]).sort("month")
 
     # Create subplots
-    fig11 = make_subplots(
+    fig10 = make_subplots(
         rows=2, cols=1,
         subplot_titles=("Average High Temperature by Month", "Total Precipitation by Month")
     )
 
     # Add traces
-    fig11.add_trace(
+    fig10.add_trace(
         go.Bar(x=weather_monthly["month"], y=weather_monthly["avg_high"], name="Temp"),
         row=1, col=1
     )
 
-    fig11.add_trace(
+    fig10.add_trace(
         go.Bar(x=weather_monthly["month"], y=weather_monthly["total_precip"], name="Precip", marker_color="steelblue"),
         row=2, col=1
     )
 
     # Update layout
-    fig11.update_xaxes(title_text="Month", row=2, col=1)
-    fig11.update_yaxes(title_text="Temperature (°C)", row=1, col=1)
-    fig11.update_yaxes(title_text="Precipitation (mm)", row=2, col=1)
+    fig10.update_xaxes(title_text="Month", row=2, col=1)
+    fig10.update_yaxes(title_text="Temperature (°C)", row=1, col=1)
+    fig10.update_yaxes(title_text="Precipitation (mm)", row=2, col=1)
 
-    fig11.update_layout(height=600, showlegend=False, title_text="Weather Summary")
-    fig11
+    fig10.update_layout(height=600, showlegend=False, title_text="Weather Summary")
+    fig10
     return (make_subplots,)
 
 
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    ## 9. Time Series with Date Aggregation
-    """)
-    return
-
-
-@app.cell
-def _(pl, px, sales):
-    # Prepare daily sales data
-    daily_sales = sales.with_columns([
-        pl.col("date").str.strptime(pl.Date, "%Y-%m-%d").alias("date_parsed")
-    ]).group_by("date_parsed").agg([
-        pl.col("total_amount").sum().alias("daily_revenue")
-    ]).sort("date_parsed")
-
-    # Create time series plot
-    fig12 = px.line(
-        daily_sales,
-        x="date_parsed",
-        y="daily_revenue",
-        title="Daily Sales Revenue Over Time",
-        labels={"date_parsed": "Date", "daily_revenue": "Revenue ($)"}
-    )
-
-    fig12.update_traces(line_color="darkgreen")
-    fig12.update_layout(hovermode="x unified")
-
-    fig12
-    return
-
-
-@app.cell(hide_code=True)
-def _(mo):
-    mo.md(r"""
-    ## 10. Interactive Features
-    """)
-    return
-
-
-@app.cell
-def _(px, sales):
-    # Rich interactive plot with multiple dimensions
-    fig13 = px.scatter(
-        sales.head(100),  # First 100 transactions
-        x="unit_price",
-        y="total_amount",
-        size="quantity",
-        color="product_category",
-        hover_data=["product_name", "payment_method", "region"],
-        title="Sales Analysis (First 100 Transactions)",
-        labels={
-            "unit_price": "Unit Price ($)",
-            "total_amount": "Total Amount ($)"
-        }
-    )
-
-    fig13.update_layout(
-        hovermode="closest",
-        legend=dict(yanchor="top", y=0.99, xanchor="left", x=0.01)
-    )
-
-    fig13
-    return
-
-
-
-@app.cell(hide_code=True)
-def _(mo):
-    mo.md(r"""
-    ## 12. Pie Chart - Proportions
+    ## 8. Pie Chart - Proportions
     """)
     return
 
@@ -412,7 +321,7 @@ def _(pl, px, sales):
         pl.col("total_amount").sum().alias("revenue")
     ])
 
-    fig15 = px.pie(
+    fig11 = px.pie(
         region_sales,
         values="revenue",
         names="region",
@@ -420,16 +329,16 @@ def _(pl, px, sales):
         hole=0.3  # Make it a donut chart
     )
 
-    fig15.update_traces(textinfo='percent+label')
+    fig11.update_traces(textinfo='percent+label')
 
-    fig15
+    fig11
     return
 
 
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    ## 13. Combining Everything
+    ## 9. Combining Everything
 
     Let's create a comprehensive sales dashboard:
     """)
@@ -456,7 +365,7 @@ def _(go, make_subplots, pl, sales):
     ])
 
     # Create dashboard
-    fig16 = make_subplots(
+    fig12 = make_subplots(
         rows=2, cols=2,
         subplot_titles=("Monthly Revenue Trend", "Revenue by Category", 
                        "Revenue by Region", "Transactions by Payment Method"),
@@ -465,33 +374,33 @@ def _(go, make_subplots, pl, sales):
     )
 
     # Monthly trend
-    fig16.add_trace(
+    fig12.add_trace(
         go.Scatter(x=monthly["month"], y=monthly["revenue"], mode='lines+markers', name="Monthly"),
         row=1, col=1
     )
 
     # By category
-    fig16.add_trace(
+    fig12.add_trace(
         go.Bar(x=by_category["product_category"], y=by_category["revenue"], name="Category"),
         row=1, col=2
     )
 
     # By region
-    fig16.add_trace(
+    fig12.add_trace(
         go.Bar(x=by_region["region"], y=by_region["revenue"], name="Region"),
         row=2, col=1
     )
 
     # Payment methods
     payment = sales.group_by("payment_method").agg([pl.len().alias("count")])
-    fig16.add_trace(
+    fig12.add_trace(
         go.Pie(labels=payment["payment_method"], values=payment["count"], name="Payment"),
         row=2, col=2
     )
 
-    fig16.update_layout(height=800, showlegend=False, title_text="Sales Dashboard")
+    fig12.update_layout(height=800, showlegend=False, title_text="Sales Dashboard")
 
-    fig16
+    fig12
     return
 
 
@@ -506,8 +415,6 @@ def _(mo):
     - ✅ Bar charts for comparisons
     - ✅ Scatter plots for relationships
     - ✅ Histograms for distributions
-    - ✅ Box plots for statistical summaries
-    - ✅ Heatmaps for correlations
     - ✅ Pie charts for proportions
     - ✅ Subplots for dashboards
     - ✅ Interactive features and customization
