@@ -137,9 +137,9 @@ By the end of this course, you'll be able to:
 - Customizing visualizations
 - Subplots
 
-### Phase 2: Practice (2 hours)
+### Phase 2: Practice (1 hour)
 
-**✏️ Exercise 1: Fundamentals** (30 min)
+**✏️ Exercise 1: Fundamentals** (20 min)
 
 - Practice Python basics
 - 8-10 hands-on exercises
