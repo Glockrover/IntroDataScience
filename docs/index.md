@@ -30,7 +30,7 @@ By the end of this course, you'll be able to:
 
 1. **Install VS Code** (if you haven't already)
 
-   - Download and Install VS Code from [code.visualstudio.com](https://code.visualstudio.com/)
+   - Download and install VS Code from [code.visualstudio.com](https://code.visualstudio.com/)
    - Install Marimo extension from [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=marimo-team.vscode-marimo)
    
 
@@ -88,6 +88,7 @@ By the end of this course, you'll be able to:
    git clone https://github.com/quickskilling/IntroDataScience.git
    cd IntroDataScience
    ```
+   If git doesn't work for you, you can [download the repository](https://github.com/quickskilling/IntroDataScience/archive/refs/heads/main.zip)
 
 6. **Sync dependencies**
 
@@ -110,7 +111,7 @@ By the end of this course, you'll be able to:
 
 ✓ Overview of Data Science and Tools
 ✓ Install VS Code and UV  
-✓ Clone repository and sync dependencies  
+✓ Clone the repository and sync dependencies  
 ✓ Launch first notebook
 
 ### Phase 1: Learn the Basics (1 hour)
@@ -205,7 +206,7 @@ Track your journey through the course:
 - [ ] Install VS Code and extensions
 - [ ] Install Python
 - [ ] Install UV and dependencies
-- [ ] Install Git and clone repository
+- [ ] Install Git and clone the repository
 - [ ] Run first notebook successfully
 
 ### Learn (Example Notebooks)
