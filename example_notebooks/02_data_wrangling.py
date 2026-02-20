@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.19.6"
+__generated_with = "0.19.11"
 app = marimo.App(width="medium")
 
 
@@ -50,7 +50,7 @@ def _():
 @app.cell
 def _(students):
     # View first few rows
-    students.head()
+    students.head(10)
     return
 
 
@@ -182,6 +182,7 @@ def _(pl, students):
 
     print(f"Math or Science students: {math_or_science.shape[0]}")
     math_or_science
+
     return
 
 
@@ -234,7 +235,7 @@ def _(pl, students):
           .alias("letter_grade")
     ])
 
-    students_with_grade.select(["name", "test_score", "letter_grade"]).head()
+    students_with_grade.select(["name", "test_score", "letter_grade"])
     return
 
 
@@ -461,7 +462,13 @@ def _(mo):
 @app.cell
 def _():
     import marimo as mo
+
     return (mo,)
+
+
+@app.cell
+def _():
+    return
 
 
 if __name__ == "__main__":

@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.19.6"
+__generated_with = "0.19.11"
 app = marimo.App(width="medium")
 
 
@@ -145,6 +145,7 @@ def _(mo):
 
 @app.cell
 def _(px, students):
+    import statsmodels.api as sm
     # Relationship between two variables
     fig5 = px.scatter(
         students,
@@ -392,7 +393,17 @@ def _(go, make_subplots, pl, sales):
     )
 
     # Payment methods
-    payment = sales.group_by("payment_method").agg([pl.len().alias("count")])
+    payment = sales.group_by("payment_method").agg([
+        pl.len().alias("count")
+    ])
+
+    fig12.add_trace(
+        go.Pie(labels=payment["payment_method"], values=payment["count"], name="Payment"),
+        row=2, col=2
+    )
+
+    fig12.update_layout(height=800, showlegend=False, title_text="Sales Dashboard")
+    sales.group_by("payment_method").agg([pl.len().alias("count")])
     fig12.add_trace(
         go.Pie(labels=payment["payment_method"], values=payment["count"], name="Payment"),
         row=2, col=2
@@ -424,10 +435,12 @@ def _(mo):
     return
 
 
-@app.cell
-def _():
-    import marimo as mo
-    return (mo,)
+app._unparsable_cell(
+    r"""
+    import marimo as mo"
+    """,
+    name="_"
+)
 
 
 if __name__ == "__main__":

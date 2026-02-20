@@ -1,7 +1,14 @@
 import marimo
 
-__generated_with = "0.19.6"
+__generated_with = "0.19.11"
 app = marimo.App(width="medium")
+
+
+@app.cell
+def _():
+    import marimo as mo
+
+    return (mo,)
 
 
 @app.cell(hide_code=True)
@@ -36,9 +43,9 @@ def _(mo):
 @app.cell
 def _():
     # Variables store data
-    name = "Alice"
-    age = 25
-    height = 1.65  # in meters
+    name = "Ayanda Dlokova"
+    age = 22
+    height = 1.8  # in meters
     is_student = True
 
     print(f"Name: {name}")
@@ -135,6 +142,13 @@ def _():
     # List length
     print(f"Number of fruits: {len(fruits)}")
     return (fruits,)
+
+
+@app.cell
+def _():
+    fruitList= ["Apple", "Banana", "Cherry"]
+    fruitList
+    return
 
 
 @app.cell
@@ -265,6 +279,7 @@ def _(numbers):
     # List comprehension way (more Pythonic!)
     squares = [n ** 2 for n in numbers]
 
+    print(f"Squares (traditional): {squares_traditional}")
     print(f"Numbers: {numbers}")
     print(f"Squares: {squares}")
     return
@@ -380,12 +395,6 @@ def _(mo):
     **Next step:** Open `02_data_wrangling.py` to learn about working with real datasets!
     """)
     return
-
-
-@app.cell
-def _():
-    import marimo as mo
-    return (mo,)
 
 
 if __name__ == "__main__":
