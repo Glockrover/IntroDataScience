@@ -144,7 +144,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "marimo", specifier = ">=0.19.0" },
+    { name = "marimo", specifier = ">=0.19.10" },
     { name = "numpy", specifier = ">=2.4.1" },
     { name = "pandas", specifier = ">=3.0.0" },
     { name = "plotly", extras = ["express"], specifier = ">=5.18.0" },
@@ -251,14 +251,14 @@ wheels = [
 
 [[package]]
 name = "marimo"
-version = "0.19.6"
+version = "0.19.11"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "click" },
     { name = "docutils" },
     { name = "itsdangerous" },
     { name = "jedi" },
-    { name = "loro", marker = "python_full_version < '3.14'" },
+    { name = "loro" },
     { name = "markdown" },
     { name = "msgspec" },
     { name = "narwhals" },
@@ -272,9 +272,9 @@ dependencies = [
     { name = "uvicorn" },
     { name = "websockets" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/79/ea/9fdaf0360037626f1fbb413636f9a4280cdc84443645f3c37dd1fd8ca7b2/marimo-0.19.6.tar.gz", hash = "sha256:0742c6f93b2003ca12f2d2881ff2134693056427e8647f8d41e5527bd71f6b38", size = 39406450, upload-time = "2026-01-24T00:20:44.61Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/06/31/aa12298afce0c7cf6bc0d8ffe664b4cfb295451f9029ca7a461c6e30390d/marimo-0.19.11.tar.gz", hash = "sha256:1f65a19f9dced82ae2d041dbe31b3f47ba16993f6411d41ba526b3b322abd948", size = 38203731, upload-time = "2026-02-12T18:37:49.536Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/be/85/5e1e9af6327366177151479bea56b0d4e5d214bdf4f17d5185dc4a8871b2/marimo-0.19.6-py3-none-any.whl", hash = "sha256:9e4f5fab438b3eeeb1e32808287a9ada9c12c5a4536af7458db6be8b8da38f2f", size = 39952916, upload-time = "2026-01-24T00:20:49.533Z" },
+    { url = "https://files.pythonhosted.org/packages/47/d4/817cfdcf9636fc75036b9e0f7aa458c0bedec420d79768005ccfcf7fc9d8/marimo-0.19.11-py3-none-any.whl", hash = "sha256:4f98b677c89cada69c330e38f0747b4fca73cedb6f81b66832df3035ab8b6cff", size = 38609582, upload-time = "2026-02-12T18:37:53.954Z" },
 ]
 
 [[package]]
