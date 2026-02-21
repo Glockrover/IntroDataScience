@@ -1,7 +1,14 @@
 import marimo
 
-__generated_with = "0.19.6"
+__generated_with = "0.19.11"
 app = marimo.App(width="medium")
+
+
+@app.cell
+def _():
+    import marimo as mo
+
+    return (mo,)
 
 
 @app.cell
@@ -23,6 +30,16 @@ def _(mo):
     return
 
 
+@app.cell
+def _():
+    import polars as pl
+    import plotly.express as px
+    import plotly.graph_objects as go
+    from plotly.subplots import make_subplots
+
+    return go, make_subplots, pl, px
+
+
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
@@ -32,21 +49,21 @@ def _(mo):
 
 
 @app.cell
-def _():
-    # TODO: Create a bar chart showing sales by category
-    # Use plotly express (px.bar)
-    # - x-axis: product_category
-    # - y-axis: total sales
-    # - Add a title
-    # - Color the bars
+def _(pl, px):
+    # Create a bar chart showing sales by category
+    category_sales = pl.read_json("../data/raw/sales.json").group_by("product_category").agg([
+        pl.col("total_amount").sum().alias("total_sales")
+    ])
 
-    # Hint: Make sure category_sales is a valid dataframe first!
-
-    ex_fig1 = None  # Create your plot here
-
-    # Uncomment when ready:
-    # ex_fig1.show()
-    return
+    ex_fig1 = px.bar(
+        category_sales, 
+        x="product_category", 
+        y="total_sales", 
+        title="Sales by Product Category", 
+        color="product_category"
+    )
+    ex_fig1
+    return (category_sales,)
 
 
 @app.cell(hide_code=True)
@@ -58,19 +75,26 @@ def _(mo):
 
 
 @app.cell
-def _():
-    # TODO: Create a line chart showing sales trends by month
-    # Use px.line
-    # - x-axis: month
-    # - y-axis: total revenue
-    # - Add markers to the line
-    # - Add a title
+def _(pl, px):
+    # Create a line chart showing sales trends by month
+    sales = pl.read_json("../data/raw/sales.json")
+    monthly_sales = sales.with_columns([
+        pl.col("date").str.strptime(pl.Date, "%Y-%m-%d").alias("date_parsed")
+    ]).with_columns([
+        pl.col("date_parsed").dt.month().alias("month")
+    ]).group_by("month").agg([
+        pl.col("total_amount").sum().alias("revenue")
+    ]).sort("month")
 
-    ex_fig2 = None
-
-    # Uncomment when ready:
-    # ex_fig2.show()
-    return
+    ex_fig2 = px.line(
+        monthly_sales,
+        x="month",
+        y="revenue",
+        title="Monthly Sales Trend",
+        markers=True
+    )
+    ex_fig2
+    return (sales,)
 
 
 @app.cell(hide_code=True)
@@ -82,17 +106,19 @@ def _(mo):
 
 
 @app.cell
-def _():
-    # TODO: Create a scatter plot showing the relationship between
-    # attendance_rate (x-axis) and test_score (y-axis)
-    # - Color points by grade_level
-    # - Add a trendline (trendline="ols")
-    # - Add appropriate title and labels
+def _(pl, px):
+    # Create a scatter plot
+    students = pl.read_csv("../data/raw/students.csv")
 
-    ex_fig3 = None
-
-    # Uncomment when ready:
-    # ex_fig3.show()
+    ex_fig3 = px.scatter(
+        students,
+        x="attendance_rate",
+        y="test_score",
+        title="Test Score vs Attendance Rate",
+        labels={"attendance_rate": "Attendance (%)", "test_score": "Test Score"},
+        color="grade_level"
+    )
+    ex_fig3
     return
 
 
@@ -105,17 +131,16 @@ def _(mo):
 
 
 @app.cell
-def _():
-    # TODO: Create a histogram of transaction amounts (total_amount)
-    # - Use 30 bins
-    # - Add a title
-    # - Label the axes
-    # - Try adding nbins=30 parameter
-
-    ex_fig4 = None
-
-    # Uncomment when ready:
-    # ex_fig4.show()
+def _(px, sales):
+    # Create a histogram
+    ex_fig4 = px.histogram(
+        sales,
+        x="total_amount",
+        title="Distribution of Transaction Amounts",
+        labels={"total_amount": "Transaction Amount ($)"},
+        nbins=30
+    )
+    ex_fig4
     return
 
 
@@ -128,18 +153,29 @@ def _(mo):
 
 
 @app.cell
-def _():
-    # TODO: Create a dashboard with 2 subplots:
-    # 1. Top plot: Bar chart of sales by category (reuse category_sales)
-    # 2. Bottom plot: Bar chart of sales by region (reuse region_summary)
+def _(category_sales, go, make_subplots, pl, sales):
+    # Create a dashboard with 2 subplots
+    region_sales = sales.group_by("region").agg([
+        pl.col("total_amount").sum().alias("total_sales")
+    ])
 
-    # Hint: Use go.Figure() with make_subplots or add multiple traces
-    # This is challenging - check the solution if you get stuck!
+    ex_fig5 = make_subplots(
+        rows=2, cols=1,
+        subplot_titles=("Sales by Category", "Sales by Region")
+    )
 
-    ex_fig5 = None
+    ex_fig5.add_trace(
+        go.Bar(x=category_sales["product_category"], y=category_sales["total_sales"], name="Category"),
+        row=1, col=1
+    )
 
-    # Uncomment when ready:
-    # ex_fig5.show()
+    ex_fig5.add_trace(
+        go.Bar(x=region_sales["region"], y=region_sales["total_sales"], name="Region"),
+        row=2, col=1
+    )
+
+    ex_fig5.update_layout(height=600, showlegend=False, title_text="Sales Dashboard")
+    ex_fig5
     return
 
 

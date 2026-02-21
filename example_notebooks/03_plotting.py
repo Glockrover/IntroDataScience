@@ -145,7 +145,6 @@ def _(mo):
 
 @app.cell
 def _(px, students):
-    import statsmodels.api as sm
     # Relationship between two variables
     fig5 = px.scatter(
         students,
@@ -403,16 +402,8 @@ def _(go, make_subplots, pl, sales):
     )
 
     fig12.update_layout(height=800, showlegend=False, title_text="Sales Dashboard")
-    sales.group_by("payment_method").agg([pl.len().alias("count")])
-    fig12.add_trace(
-        go.Pie(labels=payment["payment_method"], values=payment["count"], name="Payment"),
-        row=2, col=2
-    )
-
-    fig12.update_layout(height=800, showlegend=False, title_text="Sales Dashboard")
-
     fig12
-    return
+    return (fig12,)
 
 
 @app.cell(hide_code=True)
@@ -435,12 +426,10 @@ def _(mo):
     return
 
 
-app._unparsable_cell(
-    r"""
-    import marimo as mo"
-    """,
-    name="_"
-)
+@app.cell
+def _():
+    import marimo as mo
+    return (mo,)
 
 
 if __name__ == "__main__":
