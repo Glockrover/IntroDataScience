@@ -167,7 +167,7 @@ def _():
     # - If temp > 10: "It's cool"
     # - Otherwise: "It's cold!"
 
-    temperature = 25  # Try changing this value
+    temperature = 2  # Try changing this value
 
     # Write your if/elif/else statements here
     if temperature > 30:
