@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.19.6"
+__generated_with = "0.20.4"
 app = marimo.App(width="medium")
 
 
@@ -496,6 +496,7 @@ def _(mo):
     - ✅ Filter and select data
     - ✅ Create new calculated columns
     - ✅ Handle missing values
+    - ✅ Group and aggregate data
     - ✅ Work with dates
     - ✅ Join multiple datasets
     - ✅ Chain operations for complex analysis
