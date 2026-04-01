@@ -169,7 +169,7 @@ def _(pl):
 
     sales = pl.read_json("../data/raw/sales.json")  # Replace with pl.read_json(...)
 
-    sales.head()
+    sales.head(10)
     return (sales,)
 
 
@@ -257,11 +257,10 @@ def _(pl, sales_with_month):
         pl.col("total_amount").sum().alias("total_sales")
     ).sort("month")
 
-    print(monthly_sales)
 
     top_month = monthly_sales.sort("total_sales", descending=True).head(1)
 
-    print(top_month)
+    monthly_sales, top_month
     return
 
 
